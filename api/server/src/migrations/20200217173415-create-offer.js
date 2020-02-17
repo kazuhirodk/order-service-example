@@ -14,7 +14,7 @@ module.exports = {
       price: {
         type: Sequelize.FLOAT
       },
-      available_seats: {
+      availableSeats: {
         type: Sequelize.INTEGER
       },
       createdAt: {
