@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    database: 'books',
+    database: 'order_service',
     username: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASS || null,
     host: '127.0.0.1',
@@ -10,7 +10,7 @@ module.exports = {
   },
 
   test: {
-    database: 'books_test',
+    database: 'order_service_test',
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     host: '127.0.0.1',
