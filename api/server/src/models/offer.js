@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    available_seats: {
+    availableSeats: {
       type: DataTypes.INTEGER,
       allowNull: false,
     }

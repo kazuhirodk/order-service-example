@@ -20,7 +20,7 @@ class OfferController {
   }
 
   static async addOffer(req, res) {
-    if (!req.body.course || !req.body.price || !req.body.available_seats) {
+    if (!req.body.course || !req.body.price || !req.body.availableSeats) {
       util.setError(400, 'Please provide complete details');
       return util.send(res);
     }

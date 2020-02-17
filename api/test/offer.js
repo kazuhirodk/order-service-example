@@ -11,7 +11,7 @@ describe('Testing the offer endpoints:', () => {
     const offer = {
       course: 'Software Engineering',
       price: 120.00,
-      available_seats: 4
+      availableSeats: 4
     };
     chai.request(app)
       .post('/api/v1/offers')
@@ -23,7 +23,7 @@ describe('Testing the offer endpoints:', () => {
           id: 1,
           course: offer.course,
           price: offer.price,
-          available_seats: offer.available_seats
+          availableSeats: offer.availableSeats
         });
         done();
       });
@@ -32,7 +32,7 @@ describe('Testing the offer endpoints:', () => {
   it('It should not create a offer with incomplete parameters', (done) => {
     const offer = {
       price: '$9.99',
-      available_seats: 4
+      availableSeats: 4
     };
     chai.request(app)
       .post('/api/v1/offers')
@@ -53,7 +53,7 @@ describe('Testing the offer endpoints:', () => {
         res.body.data[0].should.have.property('id');
         res.body.data[0].should.have.property('course');
         res.body.data[0].should.have.property('price');
-        res.body.data[0].should.have.property('available_seats');
+        res.body.data[0].should.have.property('availableSeats');
         done();
       });
   });
@@ -68,7 +68,7 @@ describe('Testing the offer endpoints:', () => {
         res.body.data.should.have.property('id');
         res.body.data.should.have.property('course');
         res.body.data.should.have.property('price');
-        res.body.data.should.have.property('available_seats');
+        res.body.data.should.have.property('availableSeats');
         done();
       });
   });
@@ -105,7 +105,7 @@ describe('Testing the offer endpoints:', () => {
       id: offerId,
       course: 'Data Science',
       price: 150.00,
-      available_seats: 2
+      availableSeats: 2
     };
     chai.request(app)
       .put(`/api/v1/offers/${offerId}`)
@@ -116,7 +116,7 @@ describe('Testing the offer endpoints:', () => {
         expect(res.body.data.id).equal(updatedOffer.id);
         expect(res.body.data.course).equal(updatedOffer.course);
         expect(res.body.data.price).equal(updatedOffer.price);
-        expect(res.body.data.available_seats).equal(updatedOffer.available_seats);
+        expect(res.body.data.availableSeats).equal(updatedOffer.availableSeats);
         done();
       });
   });
@@ -127,7 +127,7 @@ describe('Testing the offer endpoints:', () => {
       id: offerId,
       course: 'Computer Science',
       price: 300,
-      available_seats: 10
+      availableSeats: 10
     };
     chai.request(app)
       .put(`/api/v1/offers/${offerId}`)
@@ -147,7 +147,7 @@ describe('Testing the offer endpoints:', () => {
       id: offerId,
       course: 'Computer Science',
       price: 300,
-      available_seats: 10
+      availableSeats: 10
     };
     chai.request(app)
       .put(`/api/v1/offers/${offerId}`)
