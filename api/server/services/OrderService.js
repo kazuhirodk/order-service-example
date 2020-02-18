@@ -1,4 +1,10 @@
 import database from '../src/models';
+import RabbitMQService from '../../../services/RabbitMQService';
+require('dotenv').config('/.env');
+
+const amqp = require('amqplib');
+const messageQueueConnectionString = process.env.CLOUDAMQP_URL;
+const rabbitMQ = new RabbitMQService();
 
 class OrderService {
   static async getAllOrders() {
@@ -10,7 +16,13 @@ class OrderService {
   }
 
   static async addOrder(newOrder) {
+    // connect to Rabbit MQ and create a channel
+    let connection = await amqp.connect(messageQueueConnectionString);
+    let channel = await connection.createConfirmChannel();
+
     try {
+      await rabbitMQ.publishToChannel(channel, { routingKey: "userRequest", exchangeName: "processing", data: newOrder });
+      await rabbitMQ.publishToChannel(channel, { routingKey: "offerRequest", exchangeName: "processing", data: newOrder });
       return await database.Order.create(newOrder);
     } catch (error) {
       throw error;
